@@ -1,0 +1,67 @@
+@import "reset"
+
+.container
+  max-width: 860px
+  margin: 0 auto
+  display: flex
+  justify-content: center
+
+.title
+  font-size: xx-large
+  text-align: center
+  margin: 20px auto 20px auto
+  font-weight: bold
+
+.sub-title
+  font-size: x-large
+  font-weight: bold
+  margin-bottom: 15px
+
+.option
+  padding: 60px 0 0 30px
+
+.sector
+  opacity: 0.6
+  border-radius: 150px 150px 150px 150px
+  position: absolute
+  height: 290px
+  width: 300px
+  &:hover
+    opacity: 0.8
+
+.red
+  background: red
+  clip: rect(0px, 300px, 150px, 150px)
+
+
+.blue
+  background: blue
+  clip: rect(0px, 150px, 150px, 0px)
+
+
+.yellow
+  background: #ffd500
+  clip: rect(150px, 150px, 300px, 0px)
+
+.green
+  background: green
+  clip: rect(150px,300px, 300px, 150px)
+
+
+.circle
+  width: 302px
+  height: 295px
+
+.game-board
+  display: flex
+  justify-content: center
+
+button
+  height: 30px
+  width: 125px
+  background: #8fe708
+  border: solid 2px #5c8714
+  border-radius: 5px
+  margin-bottom: 10px
+  &:hover
+    background: #80c21e
