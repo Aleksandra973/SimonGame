@@ -14,13 +14,13 @@
         <div class="game-info">
           <h2 class="sub-title">Round: {{this.round}}</h2>
           <button type="button" @click="start">Start</button>
-          <p v-if="!active">Sorry, you lost after {{this.round}} rounds!</p>
+          <p v-if="!active">Sorry, you lost after {{this.copyRound}} rounds!</p>
         </div>
         <div class="game-level">
           <h2 class="sub-title">Game level:</h2>
-          <input type="radio" v-model="level" value="easy" checked>Easy<br>
-          <input type="radio" v-model="level" value="normal">Normal<br>
-          <input type="radio" v-model="level" value="difficult">Difficult<br>
+          <input type="radio" v-model="level" value="1500" checked>Easy<br>
+          <input type="radio" v-model="level" value="1000">Normal<br>
+          <input type="radio" v-model="level" value="400">Difficult<br>
         </div>
       </div>
     </div>
@@ -51,8 +51,9 @@ export default {
       simonSequence: [],
       userSequence: []    ,
       round: 0,
+      copyRound: 0,
       active: true,
-      level: 'easy',
+      level: 1500,
       activateSimonBoard: false
     }
   },
@@ -61,6 +62,7 @@ export default {
       this.simonSequence = [];
       this.userSequence = [];
       this.round = 0;
+      this.copyRound = 0;
       this.active = true;
       this.newRound();
     },
@@ -86,7 +88,7 @@ export default {
           clearInterval(interval)
           this.activateSimonBoard = true;
         }
-      }, 1000);
+      }, +this.level);
     },
 
     lightUp(item) {
@@ -94,7 +96,7 @@ export default {
       sector.classList.add('animate');
       setTimeout(() => {
         sector.classList.remove('animate');
-      }, 1000);
+      }, +this.level);
     },
 
     playSound(item) {
@@ -106,7 +108,7 @@ export default {
       if(this.activateSimonBoard) {
         event.target.classList.add('animate');
         this.playSound(event.target.id);
-        setTimeout(()=>{event.target.classList.remove('animate')}, 300);
+        setTimeout(()=>{event.target.classList.remove('animate')}, +this.level);
         let correctResponse = this.userSequence.shift();
         let userResponse = event.target.id;
         this.active = (userResponse == correctResponse);
@@ -126,6 +128,7 @@ export default {
     },
 
     endGame() {
+      this.copyRound = this.round
       this.round = 0;
       this.active = false;
     }
